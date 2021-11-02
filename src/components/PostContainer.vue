@@ -10,7 +10,7 @@
             <p>{{ msg }}</p>
         </div>
         <div class="menu" id="expand" onclick="toggle_comment()">
-            <ifas style="line-height: 130px; vertical-align:bottom; font-size: 15px;" icon="comment-alt" />
+            <ifas class="comments-icon" icon="comment-alt" />
         </div>
         <div class="reply">
             <textarea name="content" placeholder="Rely..."></textarea>
@@ -136,5 +136,11 @@ export default {
         width: 676px;
         height: 60px;
 
+    }
+    .comments-icon{
+        line-height: 130px; 
+        vertical-align:middle; 
+        font-size: 16px;
+        color: #303030;
     }
 </style>
