@@ -1,4 +1,6 @@
 <template>
+
+
     <div class="container">
         <div class="vote-container">
             <ifas class="vote-icon" icon="sort-up"/>
@@ -13,7 +15,8 @@
             <ifas class="comments-icon" icon="comment-alt" />
         </div>
         <div class="reply">
-            <textarea name="content" placeholder="Rely..."></textarea>
+            <textarea name="content" @input="mixin_autoResize_resize" placeholder="Reply..."></textarea>
+
         </div>
         <!--asdfsfd
         <div id="expand-comments">
@@ -61,14 +64,19 @@
 </template>
 
 <script>
+import mixinAutoResize from "../mixin/AutoResize.js";
 export default {
+    
   name: 'PostContainer',
+  mixins: [mixinAutoResize],
   props: {
     author: String,
     msg: String,
     date: String
   }
+  
 }
+
 </script>
 <style scoped>
 .container{
@@ -124,6 +132,7 @@ export default {
     .menu:hover{
         background-color: white;
         cursor: pointer;
+        color: white;
     }
 
     .reply{
@@ -133,14 +142,19 @@ export default {
     textarea{
         border: none;
         resize: none;
+        outline: none;
         width: 676px;
-        height: 60px;
+        height: 16px;
+        font-size: 16px;
 
     }
     .comments-icon{
+        display: block;
         line-height: 130px; 
-        vertical-align:middle; 
+        margin: auto;
         font-size: 16px;
         color: #303030;
+        margin-top: 106px;
     }
+    .menu:hover, .menu:hover .comments-icon{ color: gainsboro}
 </style>
