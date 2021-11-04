@@ -4,7 +4,7 @@
     <div class="container">
         <div class="vote-container">
             <ifas class="vote-icon" icon="sort-up"/>
-            <span id="vote">0</span>
+            <span id="vote">{{like}}</span>
             <ifas class="vote-icon" icon="sort-down" />
         </div>
         <div class="content">
@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import mixinAutoResize from "../mixin/AutoResize.js";
+import mixinAutoResize from "../mixins/AutoResize.js";
 export default {
     
   name: 'PostContainer',
@@ -72,14 +72,17 @@ export default {
   props: {
     author: String,
     msg: String,
-    date: String
+    date: String,
+    like: Number,
+
+
   }
   
 }
 
 </script>
 <style scoped>
-.container{
+    .container{
 
         display:flex;
         border-style: solid;
@@ -102,10 +105,14 @@ export default {
     .content{
         display:inline;
         padding-left: 4px;
-        padding-right: 4px;
-        width: 588px;
+        padding-right: 12px;
+        width: 580px;
         padding-bottom: 10px;
         vertical-align: top;
+        
+  overflow: hidden;
+  text-overflow: ellipsis;
+
     }
     .vote-container .vote-icon:hover{
         cursor: pointer;
@@ -136,6 +143,7 @@ export default {
     }
 
     .reply{
+        border-top: 1px solid black;
         width: 700px;
         padding: 10px;
     }
@@ -143,6 +151,7 @@ export default {
         border: none;
         resize: none;
         outline: none;
+        overflow:hidden;
         width: 676px;
         height: 16px;
         font-size: 16px;
