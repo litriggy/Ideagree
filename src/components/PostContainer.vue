@@ -1,6 +1,4 @@
 <template>
-
-
     <div class="container">
         <div class="vote-container">
             <ifas class="vote-icon" icon="sort-up"/>
@@ -18,64 +16,29 @@
             <textarea name="content" @input="mixin_autoResize_resize" placeholder="Reply..."></textarea>
 
         </div>
-        <!--asdfsfd
+        
         <div id="expand-comments">
-            <div class="comments" id="comment">
-                <div class="icon">
-                    <span class="fas fa-angle-right" style="line-height: 72px; vertical-align: middle;"></span>
-                </div>
-                <div class="comments-content">
-                    <p>이상훈 25 Oct. 17:55</p>
-                    <p>Lorem ipsum </p>
-                </div>
-                <div class="comments-menu">
-                    <i class="fas fa-trash"></i>
-                    <i class="fas fa-pencil-alt"></i>
-                </div>
-            </div>
-            <div class="comments" id="comment">
-                <div class="icon">
-                    <span class="fas fa-angle-right" style="line-height: 72px; vertical-align: middle;"></span>
-                </div>
-                <div class="comments-content">
-                    <p>이상훈 25 Oct. 17:55</p>
-                    <p>Lorem ipsum </p>
-                </div>
-                <div class="comments-menu">
-                    <i class="fas fa-trash"></i>
-                    <i class="fas fa-pencil-alt"></i>
-                </div>
-            </div>
-            <div class="comments" id="comment">
-                <div class="icon">
-                    <span class="fas fa-angle-right" style="line-height: 72px; vertical-align: middle;"></span>
-                </div>
-                <div class="comments-content">
-                    <p>이상훈 25 Oct. 17:55</p>
-                    <p>Lorem ipsum </p>
-                </div>
-                <div class="comments-menu">
-                    <i class="fas fa-trash"></i>
-                    <i class="fas fa-pencil-alt"></i>
-                </div>
-            </div>
-        </div>-->
+            <CommentContainer />
+        </div>
     </div>
 </template>
 
 <script>
 import mixinAutoResize from "../mixins/AutoResize.js";
+import CommentContainer from "./CommentContainer"
 export default {
     
   name: 'PostContainer',
+  components:{
+      CommentContainer
+
+  },
   mixins: [mixinAutoResize],
   props: {
     author: String,
     msg: String,
     date: String,
     like: Number,
-
-
   }
   
 }
@@ -86,12 +49,13 @@ export default {
 
         display:flex;
         border-style: solid;
-        border-width: 1px;
+        border-width: 2px;
         border-color: black;
         width: 700px;
         flex-wrap: wrap;
         margin: auto;
         margin-top: 15px;
+        border-radius: 5px;
     
     }
     .vote-container{
@@ -135,6 +99,7 @@ export default {
         height: 130px;
         align-items: flex-end;
         justify-content: flex-end;
+        border-radius: 0px 5px 0px 0px;
     }
     .menu:hover{
         background-color: white;
@@ -166,4 +131,16 @@ export default {
         margin-top: 106px;
     }
     .menu:hover, .menu:hover .comments-icon{ color: gainsboro}
+
+
+
+        
+        
+        #expand-comments{
+        display: flex;
+        flex-wrap: wrap;
+        width: 700px;
+    }
+    
+
 </style>
