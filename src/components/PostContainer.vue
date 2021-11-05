@@ -9,7 +9,7 @@
             <p>{{ author }} {{ date }}</p>
             <p>{{ msg }}</p>
         </div>
-        <div class="menu" id="expand" onclick="toggle_comment()">
+        <div class="menu" id="expand" @click="toggle_comment(id)">
             <ifas class="comments-icon" icon="comment-alt" />
         </div>
         <div class="reply">
@@ -17,29 +17,38 @@
 
         </div>
         
-        <div id="expand-comments">
-            <CommentContainer />
+        <div class="expand-comments" :id="'comments-'+id">
+            <CommentContainer 
+                v-for="comment in comments" 
+                v-bind:key="comment.id"
+                v-bind:author="comment.author" 
+                v-bind:like="comment.likes"
+                date="20년 전" 
+                v-bind:title="comment.title" 
+                />
         </div>
     </div>
 </template>
 
 <script>
 import mixinAutoResize from "../mixins/AutoResize.js";
+import toggle_comment from "../mixins/PostMenu.js";
 import CommentContainer from "./CommentContainer"
 export default {
-    
-  name: 'PostContainer',
-  components:{
-      CommentContainer
+    name: 'PostContainer',
+    components:{
+        CommentContainer
 
-  },
-  mixins: [mixinAutoResize],
-  props: {
-    author: String,
-    msg: String,
-    date: String,
-    like: Number,
-  }
+    },
+    mixins: [mixinAutoResize, toggle_comment],
+    props: {
+        id: String,
+        author: String,
+        msg: String,
+        date: String,
+        like: Number,
+        comments: Object,
+    }
   
 }
 
@@ -136,7 +145,7 @@ export default {
 
         
         
-        #expand-comments{
+    .expand-comments{
         display: flex;
         flex-wrap: wrap;
         width: 700px;
