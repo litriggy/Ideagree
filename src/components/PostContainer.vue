@@ -47,7 +47,7 @@ export default {
         msg: String,
         date: String,
         like: Number,
-        comments: Object,
+        comments: Array,
     }
   
 }

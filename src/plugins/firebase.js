@@ -1,8 +1,17 @@
 import Vue from 'vue'
-import firebase from 'firebase/app'
+import { initializeApp } from '@firebase/app'
 
-import 'firebase/database'
+import { getDatabase } from '@firebase/database'
 
-firebase.initializeApp(firebaseConfig)
+const firebaseConfig = {
+    apiKey: "2117719ac85989139a1e3029fd9c11b4c49a48f4",
+    authDomain: "ideagree-bea65.firebaseapp.com",
+    // For databases not in the us-central1 location, databaseURL will be of the
+    // form https://[databaseName].[region].firebasedatabase.app.
+    // For example, https://your-database-123.europe-west1.firebasedatabase.app
+    databaseURL: "https://ideagree-bea65-default-rtdb.asia-southeast1.firebasedatabase.app",
+  };
 
-Vue.prototype.$firebase = firebase;
+  const app = initializeApp(firebaseConfig)
+  const database = getDatabase(app);
+Vue.prototype.$firebase = database;
