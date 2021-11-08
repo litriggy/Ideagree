@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import { initializeApp } from '@firebase/app'
 
-import { getDatabase } from '@firebase/database'
+import { getDatabase, ref, set } from '@firebase/database'
 
 const firebaseConfig = {
     apiKey: "2117719ac85989139a1e3029fd9c11b4c49a48f4",
@@ -14,4 +14,10 @@ const firebaseConfig = {
 
   const app = initializeApp(firebaseConfig)
   const database = getDatabase(app);
+
+
 Vue.prototype.$firebase = database;
+
+export default {
+  
+}

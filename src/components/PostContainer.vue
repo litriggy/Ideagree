@@ -13,8 +13,7 @@
             <ifas class="comments-icon" icon="comment-alt" />
         </div>
         <div class="reply">
-            <textarea name="content" @input="mixin_autoResize_resize" placeholder="Reply..."></textarea>
-
+            <textarea name="content" @input="mixin_autoResize_resize" placeholder="Reply..." @keyup.enter="ouut"></textarea>
         </div>
         
         <div class="expand-comments" :id="'comments-'+id">
@@ -33,7 +32,8 @@
 <script>
 import mixinAutoResize from "../mixins/AutoResize.js";
 import toggle_comment from "../mixins/PostMenu.js";
-import CommentContainer from "./CommentContainer"
+import CommentContainer from "./CommentContainer";
+
 export default {
     name: 'PostContainer',
     components:{
@@ -48,6 +48,13 @@ export default {
         date: String,
         like: Number,
         comments: Array,
+    },
+    methods:{
+        ouut(event){
+            console.log(event.target.value)
+            event.target.value="";
+            event.target.style.height = `16px`;
+        }
     }
   
 }

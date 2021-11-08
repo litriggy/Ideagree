@@ -19,8 +19,7 @@ export default {
   components: {
     PostContainer
   },
-  data: function() {
-    return{
+  data: () =>({
       posts: [
         { id: "1", title: 'My journey with Vue', author:'이상훈', likes:5, comments: [
                 { id: 1, title: 'Lorem', author:'이상훈', likes:5 },
@@ -35,7 +34,9 @@ export default {
                 { id: 3, title: 'Dolce', author:'이상훈', likes:5  }
             ]}
       ]
-    }
+  }),
+  mounted(){
+    console.log(this.$firebase)
   }
 }
 </script>
