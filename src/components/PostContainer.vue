@@ -13,7 +13,7 @@
             <ifas class="comments-icon" icon="comment-alt" />
         </div>
         <div class="reply">
-            <textarea name="content" @input="mixin_autoResize_resize" placeholder="Reply..." @keyup.enter="ouut"></textarea>
+            <textarea name="content" @input="[mixin_autoResize_resize($event), change($event)]" placeholder="Reply..." @keyup.enter="ouut"></textarea>
         </div>
         
         <div class="expand-comments" :id="'comments-'+id">
@@ -35,7 +35,7 @@ import toggle_comment from "../mixins/PostMenu.js";
 import CommentContainer from "./CommentContainer";
 
 export default {
-    name: 'PostContainer',
+    name: 'Post',
     components:{
         CommentContainer
 
@@ -51,9 +51,21 @@ export default {
     },
     methods:{
         ouut(event){
-            console.log(event.target.value)
+            
+            var val = event.target.value
+            console.log(val)
+            this.$store.dispatch('newPost')
             event.target.value="";
             event.target.style.height = `16px`;
+        },
+        change(event){
+
+            this.$store.state.Post={
+                content: event.target.value,
+                author: "상훈",
+                cmntid: 0
+            }
+            console.log(this.$store.state.Post.content)
         }
     }
   
@@ -146,17 +158,13 @@ export default {
         color: #303030;
         margin-top: 106px;
     }
-    .menu:hover, .menu:hover .comments-icon{ color: gainsboro}
+    .menu:hover, .menu:hover .comments-icon{ 
+        color: gainsboro
+    }
 
-
-
-        
-        
     .expand-comments{
         display: flex;
         flex-wrap: wrap;
         width: 700px;
     }
-    
-
 </style>

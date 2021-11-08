@@ -17,7 +17,3 @@ const firebaseConfig = {
 
 
 Vue.prototype.$firebase = database;
-
-export default {
-  
-}

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <PostContainer 
+    <Postlist
       v-for="post in posts" 
       v-bind:key="post.id"
       v-bind:id="post.id"
@@ -13,11 +13,11 @@
   </div>
 </template>
 <script>
-import PostContainer from './components/PostContainer.vue'
+import Postlist from './views/postList.vue'
 export default {
   name: 'App',
   components: {
-    PostContainer
+    Postlist
   },
   data: () =>({
       posts: [

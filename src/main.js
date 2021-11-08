@@ -11,6 +11,7 @@ library.add(fas)
 Vue.component('ifas', FontAwesomeIcon)
 Vue.config.productionTip = false
 
+
 new Vue({
   store,
   render: h => h(App),
