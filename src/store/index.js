@@ -25,15 +25,7 @@ export default new Vuex.Store({
   },
   actions:{
     getPosts({rootState, dispatch, commit}){
-      return dbService.pushPost({rootState})
-      .once('value')
-      .then(snapshot =>{
-        commit('GET_POSTS', snapshot.val())
-        return snapshot.val()
-      })
-      .catch(e =>{
-        console.log(e)
-      })
+      return dbService.getPosts()
 
 
     },

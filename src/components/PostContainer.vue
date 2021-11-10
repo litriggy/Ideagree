@@ -34,6 +34,7 @@ import mixinAutoResize from "../mixins/AutoResize.js";
 import toggle_comment from "../mixins/PostMenu.js";
 import CommentContainer from "./CommentContainer";
 
+
 export default {
     name: 'Post',
     components:{
@@ -51,9 +52,7 @@ export default {
     },
     methods:{
         ouut(event){
-            
             var val = event.target.value
-            console.log(val)
             this.$store.dispatch('newPost')
             event.target.value="";
             event.target.style.height = `16px`;
