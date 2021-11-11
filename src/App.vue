@@ -5,7 +5,6 @@
 </template>
 <script>
 import Postlist from './views/postList.vue'
-import { mapGetters } from 'vuex'
 import dbService from './plugins/dbService'
 export default {
   name: 'App',
