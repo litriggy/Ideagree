@@ -3,6 +3,7 @@
     <Postlist :posts=posts />
   </div>
 </template>
+<script src="https://www.gstatic.com/firebasejs/7.13.2"
 <script>
 import Postlist from './views/postList.vue'
 import dbService from './plugins/dbService'
@@ -12,17 +13,31 @@ export default {
     Postlist
   },
   data: () =>({
-      posts: []
+    posts:[]
   }),
   mounted(){
-    console.log(this.$firebase)
-    //this.$store.state.getPosts = 
-    dbService.getPosts().on('value', this.onDataChange)
+   // console.log(this.$firebase)
+    dbService.getPosts()
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        console.log(snapshot.val());
+        this.posts = snapshot.val()
 
+
+      } else {
+        console.log("No data available");
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 
   },
   methods:{
-    onDataChange(items) {
+    read () {
+
+      }
+    /*onDataChange(items) {
       let _posts = [];
       items.forEach((item) => {
         let key = item.key;
@@ -35,7 +50,8 @@ export default {
         });
       });
       this.posts = _posts;
-    },
-  }
+    },*/
+    }
+  
 }
 </script>

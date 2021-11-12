@@ -5,9 +5,9 @@
       v-bind:key="post.id"
       v-bind:id="post.id"
       v-bind:author="post.author" 
-      v-bind:like="post.likes"
-      date="20년 전" 
-      v-bind:msg="post.title"
+      v-bind:like="post.like"
+      v-bind:date="post.timestamp" 
+      v-bind:msg="post.content"
       v-bind:comments="post.comments" />
       </div>
 </template>
@@ -26,7 +26,7 @@ export default {
         posts: Array,
     },
     methods:{
-
+        
     }
 }
 </script>
