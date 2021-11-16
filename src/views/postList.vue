@@ -4,7 +4,7 @@
     v-for="post in posts" 
       v-bind:key="post.id"
       v-bind:id="post.id"
-      v-bind:author="post.author" 
+      v-bind:author="post.id" 
       v-bind:like="post.like"
       v-bind:date="post.timestamp" 
       v-bind:msg="post.content"
@@ -25,8 +25,8 @@ export default {
     props: {
         posts: Array,
     },
-    methods:{
-        
+    mounted(){
+        //console.log(this.posts)
     }
 }
 </script>

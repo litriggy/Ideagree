@@ -2,7 +2,7 @@ import Vue from 'vue'
 import moment from 'moment';
 import firebase from '@firebase/app'
 
-import { getDatabase, ref, set, push, get } from "firebase/database";
+import { getDatabase, ref, set, push, get, onValue, query, orderByChild, orderByKey } from "firebase/database";
 const db = getDatabase();
 
 
@@ -23,8 +23,24 @@ class dbService{
 
 }
 getPosts(){
-  return get(ref(db, 'posts'))
+  let _posts=[]
+  onValue(query(ref(db, 'posts'), orderByKey()), (snapshot)=>{
+    snapshot.forEach((childSnapshot) => {
+      const childKey = childSnapshot.key;
+      const childData = childSnapshot.val();
+      _posts.push(
+        {
+          key: childKey,
+          content: childData.content,
+          like: childData.like,
+          timestamp: childData.timestamp,
 
+        }
+      )
+    });
+    _posts.reverse()
+  })
+  return _posts
 }
 
 
