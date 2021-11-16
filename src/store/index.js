@@ -24,7 +24,7 @@ export default new Vuex.Store({
 
   },
   actions:{
-    getPosts({rootState, dispatch, commit}){
+    getPosts({commit}){
       return dbService.getPosts()
 
 
@@ -39,17 +39,11 @@ export default new Vuex.Store({
     editPost(){
   
     },
-    getComments(){
-  
+    getComments({commit}, payload){
+      return dbService.getComments(payload)
     },
-    newComment({postId, content}){
-      console.log({ content })
-      set(ref(this.$firebase, 'posts/'+postId), {
-        content: content,
-        like: 0,
-        comments: []
-  
-      })
+    newComment({commit}, payload){
+      return dbService.pushComment(payload);
   
   
     },

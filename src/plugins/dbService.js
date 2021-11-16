@@ -22,6 +22,15 @@ class dbService{
     //});
 
 }
+
+pushComment(payload){
+  push(ref(db, 'posts/'+payload.key1+'/comments'),{
+
+    content: payload.key2,
+    timestamp: moment().format(),
+  });
+}
+
 getPosts(){
   let _posts=[]
   onValue(query(ref(db, 'posts'), orderByKey()), (snapshot)=>{
@@ -34,6 +43,7 @@ getPosts(){
           content: childData.content,
           like: childData.like,
           timestamp: childData.timestamp,
+          comments: childData.comments
 
         }
       )
@@ -41,6 +51,26 @@ getPosts(){
     _posts.reverse()
   })
   return _posts
+}
+
+getComments(id){
+  let _comments=[]
+  onValue(query(ref(db, 'posts/'+id+'/comments'), orderByKey()), (snapshot)=>{
+    snapshot.forEach((childSnapshot) => {
+      const _childKey = childSnapshot.key;
+      const _childData = childSnapshot.val();
+      _comments.push(
+        {
+          key: _childKey,
+          content: _childData.content,
+          timestamp: _childData.timestamp,
+
+        }
+      )
+    });
+    _comments.reverse()
+  })
+  return _comments
 }
 
 

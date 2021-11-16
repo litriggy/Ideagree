@@ -17,7 +17,8 @@ export default {
 
   }),
   mounted(){
-      this.posts = dbService.getPosts()
+      this.$store.dispatch('getPosts')
+      .then((list)=>{this.posts = list})
   }
   
 }

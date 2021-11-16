@@ -1,12 +1,12 @@
 <template>
     <div class="container">
         <div class="vote-container">
-            <ifas class="vote-icon" icon="sort-up"/>
+            <ifas class="vote-icon" icon="sort-up" @click="upvote(id)"/>
             <span id="vote">{{like}}</span>
-            <ifas class="vote-icon" icon="sort-down" />
+            <ifas class="vote-icon" icon="sort-down" @click="downvote(id)"/>
         </div>
         <div class="content">
-            <p>{{ author }} {{ date }}</p>
+            <p>{{ id }} {{ date }}</p>
             <p>{{ msg }}</p>
         </div>
         <div class="menu" id="expand" @click="toggle_comment(id)">
@@ -21,9 +21,9 @@
                 v-for="comment in comments" 
                 v-bind:key="comment.id"
                 v-bind:author="comment.author" 
-                v-bind:like="comment.likes"
+                v-bind:timestamp="comment.timestamp"
                 date="20년 전" 
-                v-bind:title="comment.title" 
+                v-bind:content="comment.content" 
                 />
         </div>
     </div>
@@ -53,9 +53,11 @@ export default {
     methods:{
         ouut(event){
             var val = event.target.value
-            this.$store.dispatch('newPost')
+            var payload = {'key1': this.id, 'key2': val}
+            this.$store.dispatch('newComment', payload)
             event.target.value="";
             event.target.style.height = `16px`;
+            console.log(this.id)
         },
         change(event){
 
@@ -64,8 +66,17 @@ export default {
                 author: "상훈",
                 cmntid: 0
             }
-            console.log(this.$store.state.Post.content)
+            //console.log(this.$store.state.Post.content)
+        },
+        upvote(id){
+
+        },
+        downvote(id){
+
         }
+    },
+    mounted(){
+        console.log(this.comments)
     }
   
 }

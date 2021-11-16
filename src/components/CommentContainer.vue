@@ -4,8 +4,8 @@
             <ifas class="comment-icon" icon="angle-right"/>
         </div>
         <div class="comments-content">
-            <p>{{author}}</p>
-            <p>{{title}} </p>
+            <p>{{id}}{{timestamp}}</p>
+            <p>{{content}} </p>
         </div>
         <div class="comments-menu">
             <ifas class="icons" icon="trash"/>
@@ -18,9 +18,9 @@ export default {
     name: 'CommentContainer',
     props:{
         id: String,
-        title: String,
+        content: String,
         author: String,
-        like: Number,
+        timestamp: String,
     }
 }
 </script>

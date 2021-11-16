@@ -3,7 +3,7 @@
     <Post 
     v-for="post in posts" 
       v-bind:key="post.id"
-      v-bind:id="post.id"
+      v-bind:id="post.key"
       v-bind:author="post.id" 
       v-bind:like="post.like"
       v-bind:date="post.timestamp" 
