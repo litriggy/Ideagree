@@ -7,7 +7,7 @@ import auth from "./auth.module";
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+export const store = new Vuex.Store({
   modules: {
     auth,
   },
@@ -29,8 +29,8 @@ export default new Vuex.Store({
 
 
     },
-    newPost({rootState}){
-      return dbService.pushPost({rootState});
+    newPost({commit}, payload){
+      return dbService.pushPost(payload);
   
     },
     deletePost(){
@@ -40,6 +40,7 @@ export default new Vuex.Store({
   
     },
     getComments({commit}, payload){
+      //console.log(payload)
       return dbService.getComments(payload)
     },
     newComment({commit}, payload){

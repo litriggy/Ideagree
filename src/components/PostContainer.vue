@@ -48,8 +48,10 @@ export default {
         msg: String,
         date: String,
         like: Number,
-        comments: Array,
     },
+    data:()=>({
+        comments: []
+    }),
     methods:{
         ouut(event){
             var val = event.target.value
@@ -76,7 +78,9 @@ export default {
         }
     },
     mounted(){
-        console.log(this.comments)
+        //console.log(this.comments)
+        this.$store.dispatch('getComments', this.id)
+      .then((list)=>{this.comments=[];this.comments = list; })
     }
   
 }

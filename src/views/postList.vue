@@ -1,15 +1,15 @@
 <template>
-<div>
+    <div>
     <Post 
-    v-for="post in posts" 
-      v-bind:key="post.id"
-      v-bind:id="post.key"
-      v-bind:author="post.id" 
-      v-bind:like="post.like"
-      v-bind:date="post.timestamp" 
-      v-bind:msg="post.content"
-      v-bind:comments="post.comments" />
-      </div>
+        v-for="(post, postID) in posts"
+        v-bind:key="postID"
+        v-bind:id="postID"
+        v-bind:author="post.key" 
+        v-bind:like="post.like"
+        v-bind:date="post.timestamp" 
+        v-bind:msg="post.content"
+        v-bind:comments="post.comments" />
+    </div>
 </template>
 
 
@@ -23,10 +23,10 @@ export default {
         Post
     },
     props: {
-        posts: Array,
+        posts: Object,
     },
     mounted(){
-        //console.log(this.posts)
-    }
+    },
+
 }
 </script>
